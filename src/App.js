@@ -9,12 +9,13 @@ class App extends Component {
           <b className="dib">0.0.1</b>
           <h2 className="f5 lh-copy pb3 ma0 bb">To build socially responsible technologists.</h2>
           <p className="f5 lh-copy">
-            The debug module is commented out at the bottom of the src/tachyons.css file. If you
-            uncomment it a 1px outline will be placed on every element on the page. Each element has
-            a different color outline. The purpose of this is to help distinguish elements that are
-            close together by giving them different colors. This has been helpful at times when the
-            outlines are overlapping by 1 or 2 pixels and it’s hard to tell where one element ends
-            and the other begins.
+            Citizen tech is an agency for social and civic tech projects. It also provides a
+            community for anyone interested in civic and social participation. Our mission is to
+            connect professionals with socially important work.
+          </p>
+          <p className="f5 lh-copy">
+            <b>Want to get involved?</b> Signing up for the newsletter below is a good place to get
+            started.
           </p>
 
           <form
