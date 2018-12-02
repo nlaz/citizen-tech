@@ -3,7 +3,10 @@ import React, { Component } from "react";
 class App extends Component {
   render() {
     return (
-      <div className="helvetica ph5 pv6 dark-gray bg-washed-blue" style={{ height: "100vh" }}>
+      <div
+        className="helvetica ph3 ph5-ns pv6 dark-gray bg-washed-blue"
+        style={{ minHeight: "100vh" }}
+      >
         <div className="measure center">
           <h1 className="f1 lh-title mv1 mr3 dib">Citizen Tech</h1>
           <b className="dib">0.0.1</b>
