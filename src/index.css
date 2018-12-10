@@ -14,3 +14,7 @@ code {
 button {
   cursor: pointer;
 }
+
+.job-board .link {
+  color: black !important;
+}
