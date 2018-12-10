@@ -11,8 +11,8 @@ function Home() {
         <b className="dib">0.0.1</b>
         <h2 className="f5 lh-copy pb3 ma0 bb">To build socially responsible technologists.</h2>
         <p className="f5 lh-copy">
-          Citizen tech is an agency for social and civic tech projects. It also provides a community
-          for anyone interested in civic and social participation. Our mission is to connect
+          Citizen tech is an agency for social and civic tech projects. It provides a community for
+          anyone interested in civic and social participation. Our mission is to connect
           professionals with socially important work.
         </p>
         <p className="f5 lh-copy">

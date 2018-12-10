@@ -7,7 +7,7 @@ import JobBoard from "./JobBoard";
 class App extends Component {
   render() {
     return (
-      <div className="helvetica pb6 dark-gray bg-washed-blue" style={{ minHeight: "100vh" }}>
+      <div className="helvetica dark-gray bg-washed-blue" style={{ minHeight: "100vh" }}>
         <div className="center">
           <BrowserRouter>
             <Switch>
