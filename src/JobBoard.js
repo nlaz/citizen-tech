@@ -55,14 +55,40 @@ class JobBoard extends Component {
           </div>
         </div>
         <div className="mw8 center ph1">
-          {jobs.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE).map(item => (
-            <div key={item.id} className="pv4 bb">
-              <span className="green b">{item.org_type}</span>
-              <h4 className="f3 b ma0">{item.title}</h4>
-              <h5 className="f4 fw4 ma0 pa0">{item.organization}</h5>
-              <p className="lh-copy">{item.statement}</p>
+          <form className="flex mv4 items-end">
+            <div className="fl w-50 pr1 flex flex-column">
+              <label className="f6 b lh-copy">Search</label>
+              <input
+                className="f6 b--solid b--dark-gray bg-washed-blue pa2"
+                placeholder="Search by text, description, etc"
+              />
             </div>
-          ))}
+            <div className="fl w-20 pr1 flex flex-column">
+              <label className="f6 b lh-copy">Role</label>
+              <input className="f6 b--solid b--dark-gray bg-washed-blue pa2" placeholder="Any" />
+            </div>
+            <div className="fl w-20 pr1 flex flex-column">
+              <label className="f6 b lh-copy">Location</label>
+              <input className="f6 b--solid b--dark-gray bg-washed-blue pa2" placeholder="Any" />
+            </div>
+            <button className="fl w-10 b--black b--solid pa2 white bg-black b pa0">Submit</button>
+          </form>
+
+          <div className="flex justify-between items-end mb2">
+            <span className="f5 green b">{jobs.length} results</span>
+            <button className="b--none bg-transparent">Sort: Best match</button>
+          </div>
+
+          <div className="bt">
+            {jobs.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE).map(item => (
+              <div key={item.id} className="pv4 bb">
+                <span className="green b">{item.org_type}</span>
+                <h4 className="f3 b ma0">{item.title}</h4>
+                <h5 className="f4 fw4 ma0 pa0">{item.organization}</h5>
+                <p className="lh-copy">{item.statement}</p>
+              </div>
+            ))}
+          </div>
 
           <div className="mv3 flex justify-center items-center">
             <Pagination
