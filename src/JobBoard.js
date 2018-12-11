@@ -1,37 +1,30 @@
 import React, { Component } from "react";
-import cx from "classnames";
 import { Dropdown, Placeholder } from "semantic-ui-react";
 
+import { stateOptions, roleOptions } from "./common";
 import emptyImage from "./undraw_empty.svg";
 import * as api from "./apiActions";
 import Header from "./Header";
-import { stateOptions, roleOptions } from "./common";
+import Pagination from "./Pagination";
 
 const PAGE_SIZE = 15;
 
-function Pagination({ items, active, pageSize, onSelect }) {
-  const numPages = Math.ceil(items.length / pageSize);
-  return (
-    <div className="f4 flex b">
-      {[...new Array(numPages)].map((_, index) => (
-        <div
-          key={index}
-          onClick={() => onSelect(index)}
-          className={cx("pa2", {
-            green: items.length > 0 && active === index,
-            "moon-gray": items.length === 0,
-          })}
-          style={{ cursor: "pointer" }}
-        >
-          {index + 1}
-        </div>
-      ))}
-    </div>
-  );
-}
+const SORT_OPTIONS = {
+  CREATED_AT: "Recent",
+  ALPHA: "A → Z",
+  ALPHA_REVERSE: "Z → A",
+};
 
 class JobBoard extends Component {
-  state = { jobs: [], results: [], page: 0, stateFilter: "", roleFilter: "", isLoading: true };
+  state = {
+    jobs: [],
+    results: [],
+    page: 0,
+    stateFilter: "",
+    roleFilter: "",
+    isLoading: true,
+    sort: SORT_OPTIONS.CREATED_AT,
+  };
 
   componentDidMount() {
     api
@@ -56,8 +49,32 @@ class JobBoard extends Component {
     this.setState({ results, page: 0 });
   };
 
+  getSortedResults = (items, sort) => {
+    switch (sort) {
+      case SORT_OPTIONS.CREATED_AT:
+        return [...items].sort((a, b) => a.createdAt - b.createdAt);
+      case SORT_OPTIONS.ALPHA:
+        return [...items].sort((a, b) => {
+          const x = a.organization.toLowerCase();
+          const y = b.organization.toLowerCase();
+          return x < y ? -1 : x > y ? 1 : 0;
+        });
+      case SORT_OPTIONS.ALPHA_REVERSE:
+        return [...items].sort((a, b) => {
+          const x = b.organization.toLowerCase();
+          const y = a.organization.toLowerCase();
+          return x < y ? -1 : x > y ? 1 : 0;
+        });
+      default:
+        return items;
+    }
+  };
+
   render() {
-    const { results, page, isLoading } = this.state;
+    const { results, page, sort, isLoading } = this.state;
+
+    const sortedResults = this.getSortedResults(results, sort);
+
     return (
       <div className="job-board">
         <div className="bg-green black bb b--dark-green">
@@ -97,6 +114,7 @@ class JobBoard extends Component {
                 search
                 selection
                 clearable
+                fluid
                 placeholder="Any"
                 name="stateFilter"
                 value={this.state.stateFilter}
@@ -120,12 +138,22 @@ class JobBoard extends Component {
 
           <div className="flex justify-between items-end pb2 pt3 ph1">
             <span className="f5 green b">{results.length} results </span>
-            <button className="b--none bg-transparent">Sort: Best match</button>
+            <Dropdown
+              name="sort"
+              text={`Sort: ${sort}`}
+              value={sort}
+              onChange={this.handleChange}
+              options={Object.keys(SORT_OPTIONS).map(el => ({
+                key: el,
+                value: SORT_OPTIONS[el],
+                text: SORT_OPTIONS[el],
+              }))}
+            />
           </div>
 
-          {results.length > 0 ? (
+          {sortedResults.length > 0 ? (
             <div className="bt">
-              {results.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE).map(item => (
+              {sortedResults.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE).map(item => (
                 <div key={item.id} className="pv4 bb ph1">
                   <span className="green b">{item.org_type}</span>
                   <h4 className="f3 b ma0">{item.title}</h4>

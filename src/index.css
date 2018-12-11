@@ -46,3 +46,19 @@ button {
 .job-board .ui.placeholder > :before {
   background-color: #f6fffe;
 }
+
+.job-board .ui.dropdown > .dropdown.icon {
+  margin-left: 0.5em;
+}
+
+.job-board .ui.dropdown .menu {
+  border-radius: 0;
+  border: 1px solid black;
+  background: #f6fffe;
+  width: 100%;
+}
+
+.job-board .ui.dropdown .menu .selected.item,
+.job-board .ui.dropdown.selected {
+  background: #edf8f6;
+}
