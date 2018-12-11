@@ -18,3 +18,23 @@ button {
 .job-board .link {
   color: black !important;
 }
+
+.job-board .ui.default.dropdown:not(.button) > .text,
+.job-board .ui.dropdown:not(.button) > .default.text {
+  color: black;
+}
+
+.ui.selection.active.dropdown {
+  border-color: black !important;
+}
+
+.job-board .ui.selection.dropdown .menu > .item {
+  border-top: 0;
+}
+
+.job-board .ui.selection.active.dropdown:hover .menu,
+.job-board .ui.selection.active.dropdown .menu {
+  border: 0.125rem solid black;
+  border-radius: 0;
+  background: #f6fffe;
+}

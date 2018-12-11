@@ -28,6 +28,5 @@ export const fetchJobs = async () => {
       });
       fetchNextPage();
     });
-  console.log(results);
   return results;
 };

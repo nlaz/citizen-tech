@@ -1,13 +1,14 @@
 import React, { Component } from "react";
+import { Dropdown } from "semantic-ui-react";
 
 import * as api from "./apiActions";
 import Header from "./Header";
+import { stateOptions, roleOptions } from "./common";
 
 const PAGE_SIZE = 15;
 
 function Pagination({ items, active, pageSize, onSelect }) {
   const numPages = Math.ceil(items.length / pageSize);
-  console.log(numPages);
   return (
     <div className="f4 flex b">
       {[...new Array(numPages)].map((_, index) => (
@@ -25,12 +26,12 @@ function Pagination({ items, active, pageSize, onSelect }) {
 }
 
 class JobBoard extends Component {
-  state = { jobs: [], page: 0 };
+  state = { jobs: [], results: [], page: 0, stateFilter: "", roleFilter: "" };
 
   componentDidMount() {
     api
       .fetchJobs()
-      .then(response => this.setState({ jobs: response }))
+      .then(response => this.setState({ jobs: response, results: response }))
       .catch(error => console.error(error));
   }
 
@@ -39,8 +40,19 @@ class JobBoard extends Component {
     window.scrollTo(0, 0);
   };
 
+  handleChange = (e, { value, name }) => this.setState({ [name]: value });
+
+  handleSearch = e => {
+    e.preventDefault();
+    const { jobs, stateFilter, roleFilter } = this.state;
+    const results = jobs
+      .filter(el => (stateFilter ? el.state === stateFilter : true))
+      .filter(el => el.role_types && (roleFilter ? el.role_types.indexOf(roleFilter) > -1 : true));
+    this.setState({ results, page: 0 });
+  };
+
   render() {
-    const { jobs, page } = this.state;
+    const { results, page } = this.state;
     return (
       <div className="job-board">
         <div className="bg-green black bb b--dark-green">
@@ -55,33 +67,60 @@ class JobBoard extends Component {
           </div>
         </div>
         <div className="mw8 center ph1">
-          <form className="flex mv4 items-end">
+          <form className="flex mv4 items-end" onSubmit={this.handleSearch}>
             <div className="fl w-50 pr1 flex flex-column">
-              <label className="f6 b lh-copy">Search</label>
-              <input
-                className="f6 b--solid b--dark-gray bg-washed-blue pa2"
-                placeholder="Search by text, description, etc"
+              <label className="f6 b lh-copy ph1">Role</label>
+              <Dropdown
+                search
+                selection
+                clearable
+                placeholder="Any"
+                name="roleFilter"
+                value={this.state.roleFilter}
+                onChange={this.handleChange}
+                options={roleOptions}
+                style={{
+                  background: "transparent",
+                  border: ".125rem solid black",
+                  borderRadius: "0",
+                }}
               />
             </div>
-            <div className="fl w-20 pr1 flex flex-column">
-              <label className="f6 b lh-copy">Role</label>
-              <input className="f6 b--solid b--dark-gray bg-washed-blue pa2" placeholder="Any" />
+            <div className="fl w-40 pr1 flex flex-column">
+              <label className="f6 b lh-copy ph1">Location</label>
+              <Dropdown
+                search
+                selection
+                clearable
+                placeholder="Any"
+                name="stateFilter"
+                value={this.state.stateFilter}
+                onChange={this.handleChange}
+                options={stateOptions}
+                style={{
+                  background: "transparent",
+                  border: ".125rem solid black",
+                  borderRadius: "0",
+                }}
+              />
             </div>
-            <div className="fl w-20 pr1 flex flex-column">
-              <label className="f6 b lh-copy">Location</label>
-              <input className="f6 b--solid b--dark-gray bg-washed-blue pa2" placeholder="Any" />
-            </div>
-            <button className="fl w-10 b--black b--solid pa2 white bg-black b pa0">Submit</button>
+            <button
+              className="fl w-10 b--black b--solid pa2 white bg-black b pa0"
+              style={{ height: "39.5px" }}
+              type="submit"
+            >
+              Submit
+            </button>
           </form>
 
-          <div className="flex justify-between items-end mb2">
-            <span className="f5 green b">{jobs.length} results</span>
+          <div className="flex justify-between items-end pb2 pt3 ph1">
+            <span className="f5 green b">{results.length} results</span>
             <button className="b--none bg-transparent">Sort: Best match</button>
           </div>
 
           <div className="bt">
-            {jobs.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE).map(item => (
-              <div key={item.id} className="pv4 bb">
+            {results.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE).map(item => (
+              <div key={item.id} className="pv4 bb ph1">
                 <span className="green b">{item.org_type}</span>
                 <h4 className="f3 b ma0">{item.title}</h4>
                 <h5 className="f4 fw4 ma0 pa0">{item.organization}</h5>
@@ -92,7 +131,7 @@ class JobBoard extends Component {
 
           <div className="mv3 flex justify-center items-center">
             <Pagination
-              items={jobs}
+              items={results}
               active={page}
               pageSize={PAGE_SIZE}
               onSelect={this.onPageSelect}

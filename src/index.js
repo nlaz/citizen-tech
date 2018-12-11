@@ -4,6 +4,8 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "tachyons";
+import "semantic-ui-react";
+import "semantic-ui-css/semantic.min.css";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
