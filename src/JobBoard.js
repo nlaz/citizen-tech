@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { Dropdown } from "semantic-ui-react";
+import cx from "classnames";
+import { Dropdown, Placeholder } from "semantic-ui-react";
 
+import emptyImage from "./undraw_empty.svg";
 import * as api from "./apiActions";
 import Header from "./Header";
 import { stateOptions, roleOptions } from "./common";
@@ -15,7 +17,10 @@ function Pagination({ items, active, pageSize, onSelect }) {
         <div
           key={index}
           onClick={() => onSelect(index)}
-          className={active === index ? "pa2 green" : "pa2"}
+          className={cx("pa2", {
+            green: items.length > 0 && active === index,
+            "moon-gray": items.length === 0,
+          })}
           style={{ cursor: "pointer" }}
         >
           {index + 1}
@@ -26,12 +31,12 @@ function Pagination({ items, active, pageSize, onSelect }) {
 }
 
 class JobBoard extends Component {
-  state = { jobs: [], results: [], page: 0, stateFilter: "", roleFilter: "" };
+  state = { jobs: [], results: [], page: 0, stateFilter: "", roleFilter: "", isLoading: true };
 
   componentDidMount() {
     api
       .fetchJobs()
-      .then(response => this.setState({ jobs: response, results: response }))
+      .then(response => this.setState({ jobs: response, results: response, isLoading: false }))
       .catch(error => console.error(error));
   }
 
@@ -52,7 +57,7 @@ class JobBoard extends Component {
   };
 
   render() {
-    const { results, page } = this.state;
+    const { results, page, isLoading } = this.state;
     return (
       <div className="job-board">
         <div className="bg-green black bb b--dark-green">
@@ -114,20 +119,57 @@ class JobBoard extends Component {
           </form>
 
           <div className="flex justify-between items-end pb2 pt3 ph1">
-            <span className="f5 green b">{results.length} results</span>
+            <span className="f5 green b">{results.length} results </span>
             <button className="b--none bg-transparent">Sort: Best match</button>
           </div>
 
-          <div className="bt">
-            {results.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE).map(item => (
-              <div key={item.id} className="pv4 bb ph1">
-                <span className="green b">{item.org_type}</span>
-                <h4 className="f3 b ma0">{item.title}</h4>
-                <h5 className="f4 fw4 ma0 pa0">{item.organization}</h5>
-                <p className="lh-copy">{item.statement}</p>
-              </div>
-            ))}
-          </div>
+          {results.length > 0 ? (
+            <div className="bt">
+              {results.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE).map(item => (
+                <div key={item.id} className="pv4 bb ph1">
+                  <span className="green b">{item.org_type}</span>
+                  <h4 className="f3 b ma0">{item.title}</h4>
+                  <h5 className="f4 fw4 ma0 pa0">{item.organization}</h5>
+                  <p className="lh-copy">{item.statement}</p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="bt">
+              {isLoading ? (
+                <div>
+                  <div className="pv4 ph1 bb b--light-gray">
+                    <Placeholder>
+                      <Placeholder.Line />
+                      <Placeholder.Line />
+                      <Placeholder.Line />
+                      <Placeholder.Line />
+                      <Placeholder.Line />
+                    </Placeholder>
+                  </div>
+                  <div className="pv4 ph1 bb b--light-gray">
+                    <Placeholder>
+                      <Placeholder.Line />
+                      <Placeholder.Line />
+                      <Placeholder.Line />
+                      <Placeholder.Line />
+                      <Placeholder.Line />
+                    </Placeholder>
+                  </div>
+                </div>
+              ) : (
+                <div className="pv5 center">
+                  <div className="mw5 center">
+                    <img src={emptyImage} alt="Empty view" />
+                  </div>
+                  <h4 className="f4 b lh-title tc ma0 mt4">No results found</h4>
+                  <h5 className="f4 normal gray lh-title tc ma0">
+                    Try different criteria and search again.
+                  </h5>
+                </div>
+              )}
+            </div>
+          )}
 
           <div className="mv3 flex justify-center items-center">
             <Pagination

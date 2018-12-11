@@ -5,6 +5,7 @@
   "homepage": "https://nlaz.github.io/citizen-tech",
   "dependencies": {
     "airtable": "^0.5.8",
+    "classnames": "^2.2.6",
     "gh-pages": "^2.0.1",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",

@@ -38,3 +38,11 @@ button {
   border-radius: 0;
   background: #f6fffe;
 }
+
+.job-board .ui.placeholder,
+.job-board .ui.placeholder .image.header:after,
+.job-board .ui.placeholder .line,
+.job-board .ui.placeholder .line:after,
+.job-board .ui.placeholder > :before {
+  background-color: #f6fffe;
+}
