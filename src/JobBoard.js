@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Dropdown, Placeholder } from "semantic-ui-react";
+import ta from "time-ago";
+import { Icon, Dropdown, Placeholder } from "semantic-ui-react";
 
 import { stateOptions, roleOptions } from "./common";
 import emptyImage from "./undraw_empty.svg";
@@ -52,7 +53,7 @@ class JobBoard extends Component {
   getSortedResults = (items, sort) => {
     switch (sort) {
       case SORT_OPTIONS.CREATED_AT:
-        return [...items].sort((a, b) => a.createdAt - b.createdAt);
+        return [...items].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       case SORT_OPTIONS.ALPHA:
         return [...items].sort((a, b) => {
           const x = a.organization.toLowerCase();
@@ -80,7 +81,7 @@ class JobBoard extends Component {
         <div className="bg-green black bb b--dark-green">
           <div className="mw8 center">
             <Header />
-            <div className="pv5 bt bw2 b--black mb3 ph1 bg-green black">
+            <div className="pv5 bt bw2 b--black mb3 ph3 ph2-l bg-green black">
               <h1 className="f2 lh-title b mv0">Really Good Jobs</h1>
               <h2 className="f4 lh-title mv0">
                 A curated list of socially responsible job listings.
@@ -88,9 +89,12 @@ class JobBoard extends Component {
             </div>
           </div>
         </div>
-        <div className="mw8 center ph1">
-          <form className="flex mv4 items-end" onSubmit={this.handleSearch}>
-            <div className="fl w-50 pr1 flex flex-column">
+        <div className="mw8 center">
+          <form
+            className="flex flex-column flex-row-ns mv4 items-end ph3 ph2-l"
+            onSubmit={this.handleSearch}
+          >
+            <div className="fl w-100 w-50-ns pr1-ns pb2 flex flex-column">
               <label className="f6 b lh-copy ph1">Role</label>
               <Dropdown
                 search
@@ -108,7 +112,7 @@ class JobBoard extends Component {
                 }}
               />
             </div>
-            <div className="fl w-40 pr1 flex flex-column">
+            <div className="fl w-100 w-40-ns pr1-ns pb2 flex flex-column">
               <label className="f6 b lh-copy ph1">Location</label>
               <Dropdown
                 search
@@ -128,7 +132,7 @@ class JobBoard extends Component {
               />
             </div>
             <button
-              className="fl w-10 b--black b--solid pa2 white bg-black b pa0"
+              className="fl w-100 w-10-ns b--black b--solid pa2 mt1 mt0-ns mb2 white bg-black b"
               style={{ height: "39.5px" }}
               type="submit"
             >
@@ -136,7 +140,7 @@ class JobBoard extends Component {
             </button>
           </form>
 
-          <div className="flex justify-between items-end pb2 pt3 ph1">
+          <div className="flex justify-between items-end pb2 pt3 ph3">
             <span className="f5 green b">{results.length} results </span>
             <Dropdown
               name="sort"
@@ -154,19 +158,47 @@ class JobBoard extends Component {
           {sortedResults.length > 0 ? (
             <div className="bt">
               {sortedResults.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE).map(item => (
-                <div key={item.id} className="pv4 bb ph1">
+                <a
+                  href={item.link}
+                  key={item.id}
+                  className="dark-gray hover-bg-washed-green bg-animate hover-dark-gray pv4 bb ph3 db"
+                >
                   <span className="green b">{item.org_type}</span>
                   <h4 className="f3 b ma0">{item.title}</h4>
                   <h5 className="f4 fw4 ma0 pa0">{item.organization}</h5>
-                  <p className="lh-copy">{item.statement}</p>
-                </div>
+                  <div className="flex mt1 mb2">
+                    {item.createdAt && (
+                      <div className="mr3">
+                        <Icon name="clock" />
+                        <span className="gray">{ta.ago(item.createdAt)}</span>
+                      </div>
+                    )}
+                    {item.location && (
+                      <div className="mr3">
+                        <Icon name="map marker alternate" />
+                        <span className="gray">{item.location}</span>
+                      </div>
+                    )}
+                    {item.employment_type && (
+                      <div className="mr3">
+                        <Icon name="briefcase" />
+                        <span className="gray">{item.employment_type.join(", ")}</span>
+                      </div>
+                    )}
+                  </div>
+                  {item.statement && (
+                    <p className="lh-copy">
+                      <b>Description:</b> {item.statement}
+                    </p>
+                  )}
+                </a>
               ))}
             </div>
           ) : (
             <div className="bt">
               {isLoading ? (
                 <div>
-                  <div className="pv4 ph1 bb b--light-gray">
+                  <div className="pv4 ph2 bb b--light-gray">
                     <Placeholder>
                       <Placeholder.Line />
                       <Placeholder.Line />
@@ -175,7 +207,7 @@ class JobBoard extends Component {
                       <Placeholder.Line />
                     </Placeholder>
                   </div>
-                  <div className="pv4 ph1 bb b--light-gray">
+                  <div className="pv4 ph2 bb b--light-gray">
                     <Placeholder>
                       <Placeholder.Line />
                       <Placeholder.Line />
@@ -240,7 +272,7 @@ class JobBoard extends Component {
           </div>
         </div>
 
-        <div className="mw8 center pv4 ph1 flex justify-between black-80 bt b--black-80">
+        <div className="mw8 center pv4 ph3 ph2-l flex justify-between black-80 bt b--black-80">
           <span className="f5 b">Citizen Tech © 2018</span>
           <span className="f5 b">Contact</span>
         </div>

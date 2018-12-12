@@ -16,7 +16,7 @@ const getJobFromRecord = record => ({
   link: record.get("Link"),
   statement: record.get("Statement"),
   org_type: record.get("Org type"),
-  createdAt: record.get("Created at"),
+  createdAt: record.get("Created At"),
 });
 
 export const fetchJobs = async () => {

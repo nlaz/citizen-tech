@@ -15,7 +15,7 @@ button {
   cursor: pointer;
 }
 
-.job-board .link {
+.job-board .job-header .link {
   color: black !important;
 }
 
