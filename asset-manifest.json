@@ -1,7 +1,7 @@
 {
   "main.css": "/citizen-tech/static/css/main.24f14bf5.chunk.css",
-  "main.js": "/citizen-tech/static/js/main.b9d254ff.chunk.js",
-  "main.js.map": "/citizen-tech/static/js/main.b9d254ff.chunk.js.map",
+  "main.js": "/citizen-tech/static/js/main.74c3ec7e.chunk.js",
+  "main.js.map": "/citizen-tech/static/js/main.74c3ec7e.chunk.js.map",
   "static/css/1.e03f0cfd.chunk.css": "/citizen-tech/static/css/1.e03f0cfd.chunk.css",
   "static/js/1.bb22f6cd.chunk.js": "/citizen-tech/static/js/1.bb22f6cd.chunk.js",
   "static/js/1.bb22f6cd.chunk.js.map": "/citizen-tech/static/js/1.bb22f6cd.chunk.js.map",
@@ -9,9 +9,9 @@
   "runtime~main.js.map": "/citizen-tech/static/js/runtime~main.81b31e79.js.map",
   "static/media/semantic.min.css": "/citizen-tech/static/media/brand-icons.a1a749e8.svg",
   "static/media/undraw_empty.svg": "/citizen-tech/static/media/undraw_empty.0fb34e8a.svg",
-  "static/css/1.e03f0cfd.chunk.css.map": "/citizen-tech/static/css/1.e03f0cfd.chunk.css.map",
   "static/css/main.24f14bf5.chunk.css.map": "/citizen-tech/static/css/main.24f14bf5.chunk.css.map",
+  "static/css/1.e03f0cfd.chunk.css.map": "/citizen-tech/static/css/1.e03f0cfd.chunk.css.map",
   "index.html": "/citizen-tech/index.html",
-  "precache-manifest.3528fbd5c74049929ccd0240460d0358.js": "/citizen-tech/precache-manifest.3528fbd5c74049929ccd0240460d0358.js",
+  "precache-manifest.258a2ccb532a996f6fd4908349b78a06.js": "/citizen-tech/precache-manifest.258a2ccb532a996f6fd4908349b78a06.js",
   "service-worker.js": "/citizen-tech/service-worker.js"
 }
