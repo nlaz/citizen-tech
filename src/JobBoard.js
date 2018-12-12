@@ -81,9 +81,9 @@ class JobBoard extends Component {
         <div className="bg-green black bb b--dark-green">
           <div className="mw8 center">
             <Header />
-            <div className="pv5 bt bw2 b--black mb3 ph3 ph2-l bg-green black">
+            <div className="pv5 bt bw2 b--black mb3 ph3 ph2-l">
               <h1 className="f2 lh-title b mv0">Really Good Jobs</h1>
-              <h2 className="f4 lh-title mv0">
+              <h2 className="f4 lh-title mv0 normal">
                 A curated list of socially responsible job listings.
               </h2>
             </div>
@@ -132,8 +132,8 @@ class JobBoard extends Component {
               />
             </div>
             <button
-              className="fl w-100 w-20-m w-10-ns b--black b--solid pa2 mt1 mt0-ns mb2 white bg-black b"
-              style={{ height: "39.5px" }}
+              className="fl w-100 w-20-m w-10-ns b--black pa2 mt1 mt0-ns mb2 bg-transparent black b"
+              style={{ height: "39.5px", borderWidth: ".125rem" }}
               type="submit"
             >
               Submit
@@ -167,22 +167,22 @@ class JobBoard extends Component {
                 >
                   <span className="green b">{item.org_type}</span>
                   <h4 className="f3 b ma0">{item.title}</h4>
-                  <h5 className="f4 fw4 ma0 pa0">{item.organization}</h5>
-                  <div className="flex flex-wrap mb2">
+                  <h5 className="f4 fw4 ma0 pa0 mid-gray">{item.organization}</h5>
+                  <div className="flex flex-wrap mb3">
                     {item.createdAt && (
-                      <div className="mr3 pv1">
+                      <div className="mr3 pt2">
                         <Icon name="clock" />
                         <span className="gray">{ta.ago(item.createdAt)}</span>
                       </div>
                     )}
                     {item.location && (
-                      <div className="mr3 pv1">
+                      <div className="mr3 pt2">
                         <Icon name="map marker alternate" />
                         <span className="gray">{item.location}</span>
                       </div>
                     )}
                     {item.employment_type && (
-                      <div className="mr3 pv1">
+                      <div className="mr3 pt2">
                         <Icon name="briefcase" />
                         <span className="gray">{item.employment_type.join(", ")}</span>
                       </div>
