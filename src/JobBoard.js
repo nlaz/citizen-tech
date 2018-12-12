@@ -132,7 +132,7 @@ class JobBoard extends Component {
               />
             </div>
             <button
-              className="fl w-100 w-10-ns b--black b--solid pa2 mt1 mt0-ns mb2 white bg-black b"
+              className="fl w-100 w-20-m w-10-ns b--black b--solid pa2 mt1 mt0-ns mb2 white bg-black b"
               style={{ height: "39.5px" }}
               type="submit"
             >
@@ -162,25 +162,27 @@ class JobBoard extends Component {
                   href={item.link}
                   key={item.id}
                   className="dark-gray hover-bg-washed-green bg-animate hover-dark-gray pv4 bb ph3 db"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <span className="green b">{item.org_type}</span>
                   <h4 className="f3 b ma0">{item.title}</h4>
                   <h5 className="f4 fw4 ma0 pa0">{item.organization}</h5>
-                  <div className="flex mt1 mb2">
+                  <div className="flex flex-wrap mb2">
                     {item.createdAt && (
-                      <div className="mr3">
+                      <div className="mr3 pv1">
                         <Icon name="clock" />
                         <span className="gray">{ta.ago(item.createdAt)}</span>
                       </div>
                     )}
                     {item.location && (
-                      <div className="mr3">
+                      <div className="mr3 pv1">
                         <Icon name="map marker alternate" />
                         <span className="gray">{item.location}</span>
                       </div>
                     )}
                     {item.employment_type && (
-                      <div className="mr3">
+                      <div className="mr3 pv1">
                         <Icon name="briefcase" />
                         <span className="gray">{item.employment_type.join(", ")}</span>
                       </div>
