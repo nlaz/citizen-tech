@@ -2,7 +2,7 @@
   "name": "citizen-tech",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://nlaz.github.io/citizen-tech",
+  "homepage": "https://citizen.tech",
   "dependencies": {
     "airtable": "^0.5.8",
     "classnames": "^2.2.6",
