@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <div className="helvetica dark-gray bg-washed-blue" style={{ minHeight: "100vh" }}>
         <div className="center">
-          <BrowserRouter>
+          <BrowserRouter basename="/citizen-tech">
             <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/jobs" exact component={JobBoard} />
