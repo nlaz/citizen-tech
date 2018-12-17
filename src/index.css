@@ -66,3 +66,16 @@ button {
 .job-board .ui.dropdown.selected {
   background: #edf8f6;
 }
+
+.job-board .magical {
+  /* background-image: linear-gradient(145deg, #ffd700 0%, #ff6300 100%); */
+  /* background-image: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%); */
+  /* background-image: linear-gradient(to right, #00dbde 0%, #fc00ff 100%); */
+  /* background-image: linear-gradient(-20deg, #f9d423 0%, #ff4e50 100%); */
+  /* background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+  /* background-image: linear-gradient(20deg, #001b44 0%, #00449e 0%, #96ccff 100%); */
+  /* background-image: linear-gradient(-120deg, #64cbff 0%, #e47eeb 100%); */
+  background-image: linear-gradient(to right, #357edd 0%, #a463f2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

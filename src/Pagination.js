@@ -2,7 +2,7 @@ import React from "react";
 import cx from "classnames";
 
 function Pagination({ items, active, pageSize, onSelect }) {
-  const numPages = Math.ceil(items.length / pageSize);
+  const numPages = Math.min(Math.ceil(items.length / pageSize), 12);
   return (
     <div className="f4 flex b">
       {[...new Array(numPages)].map((_, index) => (

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ta from "time-ago";
-import { Icon, Dropdown, Placeholder } from "semantic-ui-react";
+import { Icon, Dropdown, Placeholder, Popup } from "semantic-ui-react";
 
 import { stateOptions, roleOptions } from "./common";
 import emptyImage from "./undraw_empty.svg";
@@ -79,13 +79,36 @@ class JobBoard extends Component {
 
     return (
       <div className="job-board">
-        <div className="bg-green black bb b--dark-green">
+        <div className="bg-light-green black bb b--light-green">
           <div className="mw8 center">
             <Header />
             <div className="pt5 bt bw2 b--black mb3 ph3 ph2-l relative">
+              <span className="absolute mt2 black" style={{ top: 0, right: 0 }}>
+                <Popup
+                  trigger={
+                    <Icon
+                      name="question circle outline"
+                      size="large"
+                      style={{ outlineColor: "transparent" }}
+                    />
+                  }
+                  inverted
+                  position="bottom right"
+                >
+                  <p className="f5 lh-copy">
+                    These are jobs that are primarily focused on bringing positive change to
+                    pressing social issues.
+                  </p>
+                  <p className="f5 lh-copy">
+                    It contains a mixture of advocacy, service, philanthropy, international
+                    development, social enterprise, corporate social responsibility, and government
+                    improvement.
+                  </p>
+                </Popup>
+              </span>
               <h1 className="f2 lh-title b mv0">Better Fucking Jobs.</h1>
-              <h2 className="f4 lh-title mv0 normal">
-                A curated list of jobs good for you and society.
+              <h2 className="f3 f4-ns lh-title mv0 normal">
+                A curated list of jobs good for you and <b className="magical">good for society</b>.
               </h2>
               <form
                 className="flex flex-column flex-row-ns mt4 mb4
@@ -130,7 +153,7 @@ class JobBoard extends Component {
                   />
                 </div>
                 <button
-                  className="fl w-100 w-20-m w-10-ns b--black pa2 mt1 mt0-ns mb2 bg-transparent black b hover-bg-black hover-green"
+                  className="fl w-100 w-20-m w-10-ns b--black pa2 mt1 mt0-ns mb2 bg-transparent black b hover-bg-black hover-light-green"
                   style={{ height: "39.5px", borderWidth: ".125rem" }}
                   type="submit"
                 >
