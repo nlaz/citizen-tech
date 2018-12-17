@@ -86,6 +86,11 @@ class JobBoard extends Component {
             name="description"
             content="A curated list of jobs primarily focused on bringing positive change to pressing social issues."
           />
+          <meta property="og:title" content="Better F#&king Jobs" />
+          <meta property="og:url" content="https://betterfuckingjobs.com" />
+          <meta property="og:url" content="https://betterfuckingjobs.com" />
+          <meta name="og:image" content={require("./twittercard.png")} />
+
           <meta name="twitter:title" content="Better F#&king Jobs" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:image" content={require("./twittercard.png")} />
