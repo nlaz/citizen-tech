@@ -7,6 +7,7 @@ import emptyImage from "./undraw_empty.svg";
 import * as api from "./apiActions";
 import Header from "./Header";
 import Pagination from "./Pagination";
+import { Helmet } from "react-helmet";
 
 const PAGE_SIZE = 15;
 
@@ -79,6 +80,16 @@ class JobBoard extends Component {
 
     return (
       <div className="job-board">
+        <Helmet>
+          <title>Better Fucking Jobs</title>
+          <meta
+            name="description"
+            content="A curated list of jobs primarily focused on bringing positive change to pressing social issues."
+          />
+          <meta name="twitter:title" content="Better F#&king Jobs" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:image" content={require("./twittercard.png")} />
+        </Helmet>
         <div className="bg-light-green black bb b--light-green">
           <div className="mw8 center">
             <Header />
