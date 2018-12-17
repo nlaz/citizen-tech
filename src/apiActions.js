@@ -12,11 +12,11 @@ const getJobFromRecord = record => ({
   role_types: record.get("Role Types"),
   employment_type: record.get("Employment Type"),
   remote_friendly: record.get("Remote Friendly"),
-  deadline: record.get("Application Deadline"),
-  link: record.get("Link"),
-  statement: record.get("Statement"),
-  org_type: record.get("Org type"),
+  link: record.get("Job Link"),
+  description: record.get("Organization Description"),
+  org_type: record.get("Organization type"),
   createdAt: record.get("Created At"),
+  salary: record.get("Estimated Salary"),
 });
 
 export const fetchJobs = async () => {

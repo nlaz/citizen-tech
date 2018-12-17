@@ -6,12 +6,12 @@ function Home() {
   return (
     <div className="mw8 center">
       <Header />
-      <div className="measure center pv5 mt4">
+      <div className="measure center pv5 mt5 ph3">
         <h1 className="f1 lh-title mv1 mr3 dib">Citizen Tech</h1>
         <b className="dib">0.0.1</b>
         <h2 className="f5 lh-copy pb3 ma0 bb">To build socially responsible technologists.</h2>
         <p className="f5 lh-copy">
-          Citizen tech is an agency for social and civic tech projects. It provides a community for
+          Citizen tech is a community for social and civic tech projects. It provides a place for
           anyone interested in civic and social participation. Our mission is to connect
           professionals with socially important work.
         </p>

@@ -1,7 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import { Icon } from "semantic-ui-react";
 
-function Header() {
+function Header(props) {
+  const isJobBoard = props.match.path === "/jobs";
   return (
     <div className="flex justify-between items-center b pv3 ph3 ph2-l">
       <div className="f4 b">
@@ -9,7 +11,18 @@ function Header() {
           Citizen Tech
         </Link>
       </div>
-      <div className="f5 b lh-title">
+      <div className="f5 b lh-title flex">
+        {isJobBoard && (
+          <a
+            href="https://airtable.com/shrAPBjzRwAcDHBui"
+            className="link dark-gray hover-dark-gray underline-hover mr3 mr4-ns flex items-center"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <Icon name="plus" size="small" />
+            <span>Add Job</span>
+          </a>
+        )}
         <Link to="/jobs" className="link dark-gray hover-dark-gray underline-hover">
           Job Board
         </Link>
@@ -18,4 +31,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default withRouter(Header);

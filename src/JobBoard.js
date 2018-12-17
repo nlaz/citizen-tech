@@ -43,11 +43,12 @@ class JobBoard extends Component {
 
   handleSearch = e => {
     e.preventDefault();
+    this.setState({ isLoading: true });
     const { jobs, stateFilter, roleFilter } = this.state;
     const results = jobs
       .filter(el => (stateFilter ? el.state === stateFilter : true))
       .filter(el => el.role_types && (roleFilter ? el.role_types.indexOf(roleFilter) > -1 : true));
-    this.setState({ results, page: 0 });
+    setTimeout(() => this.setState({ results, page: 0, isLoading: false }), 300);
   };
 
   getSortedResults = (items, sort) => {
@@ -81,65 +82,72 @@ class JobBoard extends Component {
         <div className="bg-green black bb b--dark-green">
           <div className="mw8 center">
             <Header />
-            <div className="pv5 bt bw2 b--black mb3 ph3 ph2-l">
-              <h1 className="f2 lh-title b mv0">Really Good Jobs</h1>
+            <div className="pt5 bt bw2 b--black mb3 ph3 ph2-l relative">
+              <h1 className="f2 lh-title b mv0">Better Fucking Jobs.</h1>
               <h2 className="f4 lh-title mv0 normal">
-                A curated list of socially responsible job listings.
+                A curated list of jobs good for you and society.
               </h2>
+              <form
+                className="flex flex-column flex-row-ns mt4 mb4
+                 items-end"
+                onSubmit={this.handleSearch}
+              >
+                <div className="fl w-100 w-50-ns pb2 pr1-ns flex flex-column">
+                  <label className="f6 b lh-copy ph1">Role</label>
+                  <Dropdown
+                    search
+                    selection
+                    clearable
+                    placeholder="Any"
+                    name="roleFilter"
+                    value={this.state.roleFilter}
+                    onChange={this.handleChange}
+                    options={roleOptions}
+                    style={{
+                      background: "transparent",
+                      border: ".125rem solid black",
+                      borderRadius: "0",
+                    }}
+                  />
+                </div>
+                <div className="fl w-100 w-40-ns pr1-ns pb2 flex flex-column">
+                  <label className="f6 b lh-copy ph1">Location</label>
+                  <Dropdown
+                    search
+                    selection
+                    clearable
+                    fluid
+                    placeholder="Any"
+                    name="stateFilter"
+                    value={this.state.stateFilter}
+                    onChange={this.handleChange}
+                    options={stateOptions}
+                    style={{
+                      background: "transparent",
+                      border: ".125rem solid black",
+                      borderRadius: "0",
+                    }}
+                  />
+                </div>
+                <button
+                  className="fl w-100 w-20-m w-10-ns b--black pa2 mt1 mt0-ns mb2 bg-transparent black b hover-bg-black hover-green"
+                  style={{ height: "39.5px", borderWidth: ".125rem" }}
+                  type="submit"
+                >
+                  {isLoading ? (
+                    <span className="flex justify-center items-center">
+                      <Icon name="spinner" loading />
+                      <span className="dn-ns">Searching...</span>
+                    </span>
+                  ) : (
+                    "Search"
+                  )}
+                </button>
+              </form>
             </div>
           </div>
         </div>
         <div className="mw8 center">
-          <form
-            className="flex flex-column flex-row-ns mv4 items-end ph3 ph2-l"
-            onSubmit={this.handleSearch}
-          >
-            <div className="fl w-100 w-50-ns pr1-ns pb2 flex flex-column">
-              <label className="f6 b lh-copy ph1">Role</label>
-              <Dropdown
-                search
-                selection
-                clearable
-                placeholder="Any"
-                name="roleFilter"
-                value={this.state.roleFilter}
-                onChange={this.handleChange}
-                options={roleOptions}
-                style={{
-                  background: "transparent",
-                  border: ".125rem solid black",
-                  borderRadius: "0",
-                }}
-              />
-            </div>
-            <div className="fl w-100 w-40-ns pr1-ns pb2 flex flex-column">
-              <label className="f6 b lh-copy ph1">Location</label>
-              <Dropdown
-                search
-                selection
-                clearable
-                fluid
-                placeholder="Any"
-                name="stateFilter"
-                value={this.state.stateFilter}
-                onChange={this.handleChange}
-                options={stateOptions}
-                style={{
-                  background: "transparent",
-                  border: ".125rem solid black",
-                  borderRadius: "0",
-                }}
-              />
-            </div>
-            <button
-              className="fl w-100 w-20-m w-10-ns b--black pa2 mt1 mt0-ns mb2 bg-transparent black b"
-              style={{ height: "39.5px", borderWidth: ".125rem" }}
-              type="submit"
-            >
-              Submit
-            </button>
-          </form>
-
           <div className="flex justify-between items-end pb2 pt3 ph3">
             <span className="f5 green b">{results.length} results </span>
             <Dropdown
@@ -187,10 +195,16 @@ class JobBoard extends Component {
                         <span className="gray">{item.employment_type.join(", ")}</span>
                       </div>
                     )}
+                    {item.salary && (
+                      <div className="mr3 pt2">
+                        <Icon name="usd" className="green" />
+                        <span className="gray">{item.salary}</span>
+                      </div>
+                    )}
                   </div>
-                  {item.statement && (
+                  {item.description && (
                     <p className="lh-copy">
-                      <b>Description:</b> {item.statement}
+                      <b>Description:</b> {item.description}
                     </p>
                   )}
                 </a>
@@ -276,7 +290,9 @@ class JobBoard extends Component {
 
         <div className="mw8 center pv4 ph3 ph2-l flex justify-between black-80 bt b--black-80">
           <span className="f5 b">Citizen Tech © 2018</span>
-          <span className="f5 b">Contact</span>
+          <a href="mailto:hey@citizen.tech" className="f5 b black-80 hover-black">
+            Contact
+          </a>
         </div>
       </div>
     );

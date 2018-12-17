@@ -39,6 +39,10 @@ button {
   background: #f6fffe;
 }
 
+.job-board .ui.active.search.dropdown input.search:focus + .text {
+  color: #137752 !important;
+}
+
 .job-board .ui.placeholder,
 .job-board .ui.placeholder .image.header:after,
 .job-board .ui.placeholder .line,
