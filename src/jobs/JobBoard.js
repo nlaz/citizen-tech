@@ -94,7 +94,8 @@ class JobBoard extends Component {
             <Header />
             <div className="pt5 bt bw2 b--black mb3 ph3 ph2-l relative">
               <span className="absolute mt2 black" style={{ top: 0, right: 0 }}>
-                <Link to="/jobs/about" className="dark-gray hover-black">
+                <Link to="/jobs/about" className="black hover-black">
+                  <span className="mr1 b">About</span>
                   <Icon
                     name="question circle outline"
                     size="large"
