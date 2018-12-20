@@ -1,13 +1,15 @@
 import React, { Component } from "react";
-import ta from "time-ago";
-import { Icon, Dropdown, Placeholder, Popup } from "semantic-ui-react";
-
-import { stateOptions, roleOptions } from "./common";
-import emptyImage from "./undraw_empty.svg";
-import * as api from "./apiActions";
-import Header from "./Header";
-import Pagination from "./Pagination";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { Icon, Dropdown, Placeholder } from "semantic-ui-react";
+import ta from "time-ago";
+
+import * as api from "../apiActions";
+import Header from "../components/Header";
+
+import Pagination from "./Pagination";
+import emptyImage from "./undraw_empty.svg";
+import { stateOptions, roleOptions } from "./common";
 
 const PAGE_SIZE = 15;
 
@@ -81,7 +83,7 @@ class JobBoard extends Component {
     return (
       <div className="job-board">
         <Helmet>
-          <title>A Better Job Board</title>
+          <title>A Better Job Board | Citizen Tech</title>
           <meta
             name="description"
             content="A curated list of jobs focused on finding satisfying work."
@@ -92,27 +94,13 @@ class JobBoard extends Component {
             <Header />
             <div className="pt5 bt bw2 b--black mb3 ph3 ph2-l relative">
               <span className="absolute mt2 black" style={{ top: 0, right: 0 }}>
-                <Popup
-                  trigger={
-                    <Icon
-                      name="question circle outline"
-                      size="large"
-                      style={{ outlineColor: "transparent" }}
-                    />
-                  }
-                  inverted
-                  position="bottom right"
-                >
-                  <p className="f5 lh-copy">
-                    These are jobs that are primarily focused on bringing positive change to
-                    pressing social issues.
-                  </p>
-                  <p className="f5 lh-copy">
-                    It contains a mixture of advocacy, service, philanthropy, international
-                    development, social enterprise, corporate social responsibility, and government
-                    improvement.
-                  </p>
-                </Popup>
+                <Link to="/jobs/about" className="dark-gray hover-black">
+                  <Icon
+                    name="question circle outline"
+                    size="large"
+                    style={{ outlineColor: "transparent" }}
+                  />
+                </Link>
               </span>
               <h1 className="f2 lh-title b mv0">Find Better Work.</h1>
               <h2 className="f3 f4-ns lh-title mv0 normal">

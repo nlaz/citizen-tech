@@ -1,6 +1,6 @@
 import { Component } from "react";
 import ReactGA from "react-ga";
-import config from "./config";
+import config from "../config";
 
 ReactGA.initialize(config.googleAnalyticsKey);
 
