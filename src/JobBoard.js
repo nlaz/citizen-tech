@@ -81,19 +81,11 @@ class JobBoard extends Component {
     return (
       <div className="job-board">
         <Helmet>
-          <title>Better Fucking Jobs</title>
+          <title>A Better Job Board</title>
           <meta
             name="description"
-            content="A curated list of jobs primarily focused on bringing positive change to pressing social issues."
+            content="A curated list of jobs focused on finding satisfying work."
           />
-          <meta property="og:title" content="Better F#&king Jobs" />
-          <meta property="og:url" content="https://betterfuckingjobs.com" />
-          <meta property="og:url" content="https://betterfuckingjobs.com" />
-          <meta name="og:image" content={require("./twittercard.png")} />
-
-          <meta name="twitter:title" content="Better F#&king Jobs" />
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:image" content={require("./twittercard.png")} />
         </Helmet>
         <div className="bg-light-green black bb b--light-green">
           <div className="mw8 center">
@@ -122,7 +114,7 @@ class JobBoard extends Component {
                   </p>
                 </Popup>
               </span>
-              <h1 className="f2 lh-title b mv0">Better Fucking Jobs.</h1>
+              <h1 className="f2 lh-title b mv0">Find Better Work.</h1>
               <h2 className="f3 f4-ns lh-title mv0 normal">
                 A curated list of jobs good for you and <b className="magical">good for society</b>.
               </h2>
@@ -232,6 +224,12 @@ class JobBoard extends Component {
                       <div className="mr3 pt2">
                         <Icon name="briefcase" />
                         <span className="gray">{item.employment_type.join(", ")}</span>
+                      </div>
+                    )}
+                    {item.remote_friendly && (
+                      <div className="mr3 pt2">
+                        <Icon name="wifi" />
+                        <span className="gray">Remote Friendly</span>
                       </div>
                     )}
                     {item.salary && (
