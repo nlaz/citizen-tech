@@ -1,11 +1,10 @@
 import React from "react";
-import { Icon } from "semantic-ui-react";
 import Header from "../components/Header";
 
-const Anchor = ({ to, children }) => (
+const Anchor = ({ to, children, className }) => (
   <a
     href={to}
-    className="b dark-green underline-hover hover-dark-green"
+    className={className || "b dark-green underline-hover hover-dark-green"}
     target="_blank"
     rel="noopener noreferrer"
   >
@@ -13,27 +12,37 @@ const Anchor = ({ to, children }) => (
   </a>
 );
 
+const Emoji = ({ value }) => (
+  <span role="img" aria-label={value}>
+    {value}
+  </span>
+);
+
 function JobBoardAbout() {
   return (
-    <div className="job-board bg-light-green black" style={{ minHeight: "100vh" }}>
+    <div className="job-board bg-light-green black pb5" style={{ minHeight: "100vh" }}>
       <div className="bg-light-green bb b--light-green">
         <div className="mw8 center">
           <Header />
           <div className="pv5 bt bw2 b--black mb3 ph3 ph2-l">
             <h1 className="f2 lh-title black">About</h1>
             <p className="f3 lh-copy">
-              This job board is designed to help techologists find better work. Better work means
-              being good for you and good for society.
+              <b>Welcome.</b> My name is{" "}
+              <Anchor to="https://twitter.com/nikolazaris" className="black underline hover-black">
+                Niko
+              </Anchor>
+              . I created this job board to help technologists find better work. Better work means
+              jobs that are both good for you and good for society.
             </p>
           </div>
         </div>
       </div>
       <div className="mw8 center ph3 ph2-l">
-        <h3 className="f3">What's the point?</h3>
+        <h3 className="f3">Why?</h3>
         <p className="f4 lh-copy">
           The point of this job board is to help technologists find more satisfying work. This job
-          board is for people that want to feel ethically comfortable with the work they do. To be
-          included in this job board, the job must be focussed on a pressing social issue with the
+          board is for people that want to feel comfortable with the work they do. To be included in
+          this job board, the job listing must be focused on a pressing social issue with the
           opportunity for real positive change.
         </p>
         <p className="f4 lh-copy">
@@ -42,8 +51,8 @@ function JobBoardAbout() {
         </p>
         <h3 className="f3">Even Better Job Boards</h3>
         <p className="f4 lh-copy">
-          This job board was inspired and helped by this collection of even better job boards. Check
-          them out and consider bookmarking them.
+          This job board was inspired by and created from this collection of even better job boards.
+          Check them out and consider bookmarking them.
         </p>
         <ul className="f4 lh-copy ml0 pl4">
           <li>
@@ -64,21 +73,13 @@ function JobBoardAbout() {
             's <Anchor to="https://civicjobs.nyc/">NYC Civic Jobs</Anchor>
           </li>
         </ul>
-        <h3 className="f3 mt4">Who made this?</h3>
+        <h3 className="f3 mt4">
+          Questions <Emoji value="🙋" />
+        </h3>
         <p className="f4 lh-copy">
-          <Anchor to="http://citizen.tech">Citizen Tech</Anchor> and its job board was created by{" "}
-          <Anchor to="https://twitter.com/nikolazaris">Niko Lazaris</Anchor> to help other
-          designers, developers, and product managers. It is{" "}
-          <Anchor to="https://github.com/nlaz/citizen-tech">
-            <Icon name="github" size="small" className="dark-green" />
-            open source
-          </Anchor>{" "}
-          if you are curious.
-        </p>
-        <p className="f4 lh-copy">
-          I'm happy to answer your questions over{" "}
+          I am always happy to answer your questions and suggestions over{" "}
           <Anchor to="https://twitter.com/nikolazaris">twitter</Anchor> or{" "}
-          <Anchor to="mailto:hey@citizen.tech">email</Anchor>, too.
+          <Anchor to="mailto:niko@citizen.tech">email</Anchor>, too.
         </p>
       </div>
     </div>

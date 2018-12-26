@@ -2,6 +2,12 @@ import React from "react";
 
 import Header from "./components/Header";
 
+const Anchor = ({ to, children }) => (
+  <a href={to} className="black underline hover-black" target="_blank" rel="noopener noreferrer">
+    {children}
+  </a>
+);
+
 function Home() {
   return (
     <div className="mw8 center">
@@ -10,14 +16,16 @@ function Home() {
         <h1 className="f1 lh-title mv1 mr3 dib">Citizen Tech</h1>
         <b className="dib">0.0.1</b>
         <h2 className="f5 lh-copy pb3 ma0 bb">To build socially responsible technologists.</h2>
-        <p className="f5 lh-copy">
-          Citizen tech is a community for social and civic tech projects. It provides a place for
-          anyone interested in civic and social participation. Our mission is to connect
-          professionals with socially important work.
+        <p className="f5 lh-copy mt2">
+          <b>Welcome.</b> Citizen tech is a community of technologists exploring social and civic
+          tech projects. <Anchor to="https://twitter.com/nikolazaris">I</Anchor> created this
+          community to provide a space for people to participate in civic and social issues. The
+          goal behind this community is to connect professionals with socially important work.
         </p>
         <p className="f5 lh-copy">
-          <b>Want to get involved?</b> Signing up for the newsletter below is a good place to get
-          started.
+          <b>Want to get involved?</b> Signing up for the newsletter below is a good step. Send me
+          an email at <Anchor to="mailto:niko@citizen.tech">niko@citizen.tech</Anchor> if you are
+          interested in becoming a member of the community.
         </p>
 
         <form
