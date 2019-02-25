@@ -12,6 +12,9 @@ function Header(props) {
         </Link>
       </div>
       <div className="f5 b lh-title flex">
+        <Link to="/resources" className="link dark-gray hover-dark-gray underline-hover mr3 mr4-ns">
+          Resources
+        </Link>
         {isJobBoard && (
           <a
             href="https://airtable.com/shrAPBjzRwAcDHBui"
