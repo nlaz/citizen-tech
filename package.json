@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://citizen.tech",
   "dependencies": {
-    "airtable": "^0.5.8",
+    "airtable": "^0.7.2",
     "classnames": "^2.2.6",
     "gh-pages": "^2.0.1",
     "react": "^16.6.3",
